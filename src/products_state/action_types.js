@@ -1,0 +1,5 @@
+export const products_action_Types = {
+  FETCHING_START: "FETCHING_START",
+  FETCHING_SUCCESS: "FETCHING_SUCCESS",
+  FETCHING_ERROR: "FETCHING_ERROR",
+};

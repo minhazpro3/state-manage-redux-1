@@ -1,20 +1,26 @@
-import { createContext, useState } from "react";
-import "./App.css";
-import FormFrame from "./components/FormFrame";
-import Parent from "./components/Parent";
-
-export const GLOBALSTATE = createContext();
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import TopRated from "./pages/TopRated";
+import Cart from "./pages/Cart";
+import NotFound from "./pages/NotFound";
+import Nav from "./components/Nav";
+import ProductProvider from "./context/ProductProvider";
 
 function App() {
-  const [count, setCount] = useState(0);
-  const value = { count, setCount };
   return (
-    <GLOBALSTATE.Provider value={value}>
-      <div className="App">
-        {/* <Parent /> */}
-        <FormFrame />
-      </div>
-    </GLOBALSTATE.Provider>
+    <ProductProvider>
+      <BrowserRouter>
+        <Nav />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="top-rated" element={<TopRated />} />
+          <Route path="cart" element={<Cart />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </ProductProvider>
   );
 }
 
